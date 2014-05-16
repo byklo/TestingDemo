@@ -1,9 +1,9 @@
 var Cars;
 (function (Cars){
-	var DataStore = (function{
+	var DataStore = (function(){
 		function DataStore($http){
 			this.$http = $http;
-		};
+		}
 
 		DataStore.prototype.getData = function(){
 			var cars = [{ year : 1984, model : 'Porsche 930'},
@@ -19,4 +19,4 @@ var Cars;
 		return DataStore;
 	})();
 	Cars.DataStore = DataStore;
-})(Cars);
+})(Cars || (Cars={}));

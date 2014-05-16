@@ -1,19 +1,64 @@
 <!DOCTYPE html>
 <head>
 	<title>Testing Demo</title>
-	<script src='./resources/angular.js'></script>
 </head>
-<body ng-app>
-	Cars
+<body ng-app='carApp' ng-controller='Cars.CarController'>
+	<div><h1>Cars</h1></div>
 
-	<!-- placeholder for modular search/add -->
+	<tabset justified="true">
+		
+		<tab heading="Search">
+			<div>
+				<input type='text' ng-model='tabs.searchText.model' />
+			</div>
+		</tab>
 
-	<!-- LISTING - with filter -->
-
-	<li ng-repeat='' />
-
-	<!-- DELETE BUTTONS - beside respective listing -->
+		<tab heading="Add">
+			<div>
+				<input type='text' ng-model='tabs.newYear' />
+				&nbsp
+				<input type='text' ng-model='tabs.newModel' />
+				&nbsp
+				<button ng-click='addNewCar()'>
+					+
+				</button>
+			</div>
+		</tab>
 	
+	</tabset>
 
+
+	<!-- ADDER -->
+<!-- 	<div>
+		<input type='text' ng-model='newYear' />
+		&nbsp
+		<input type='text' ng-model='newModel' />
+		&nbsp
+		<button ng-click='addNewCar()'>
+			+
+		</button>
+	</div> -->
+	
+	<!-- SEARCH -->
+<!-- 	<div>
+		SEARCH
+		<input type='text' ng-model='searchText.model' />
+	</div> -->
+
+	<!-- LISTING -->
+	<div ng-repeat='car in carListing | filter:tabs.searchText'>
+		{{car.year}} &nbsp {{car.model}} &nbsp <input type='checkbox' ng-model='car.selected' />
+	</div>
+
+	<!-- DELETE AND RELOAD -->
+	<button ng-click='deleteSelected()'>Delete</button>
+	<button ng-click='reloadData()'>Reload</button>
+
+	<!-- RESOURCES -->
+	<script src="./resources/angular.js"	></script>
+	<link href="./resources/bootstrap.css" type="text/css" rel="stylesheet"></script>
+	<script src="./resources/ui-bootstrap-tpls-0.11.0.js" ></script>
+	<script src="./service.js"				></script>
+	<script src="./controller.js"			></script>
 </body>
 </html>
