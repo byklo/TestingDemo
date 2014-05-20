@@ -7,15 +7,25 @@
 			padding:30px;
 		}
 
+		.padmeless {
+			padding-left: 60px;
+		}
+
 		.center {
 			text-align: center;
 		}
 
 		.marginme {
-			position: fixed;
 			top: 260px;
-			right: 46%;
+			margin-left: 40%; 
 		}
+
+		.searchadder {
+			width: 60%;
+			text-align: center;
+			margin-left: 20%;
+		}
+
 	</style>
 
 </head>
@@ -28,11 +38,13 @@
 
 	<!-- SEARCH AND ADDER -->
 
-	<tabset justified="true">
+	<div class="searchadder">
+	<tabset>
 		
 		<tab heading="Search">
 			<div id="wrapper" style="text-align: center">    
 			    <div class="padme" id="yourdiv" style="display: inline-block;">
+			    	<br />
 			    	<input type='text' size=100 placeholder="Search cars..." ng-model='tabs.searchText.model' />
 			    </div>
 			</div>
@@ -55,18 +67,27 @@
 		</tab>
 	
 	</tabset>
+	</div>
 
 	<!-- LISTING -->
 	<div class="marginme">
 
-		<div class="center padme">
+		<div class="padme">
 			<button ng-click='deleteSelected()'>Delete</button>
 			<button ng-click='reloadData()'>Reload</button>
 		</div>
 
-		<div class="center" ng-repeat='car in carListing | filter:tabs.searchText'>
+<!-- 		<div class="center" ng-repeat='car in carListing | filter:tabs.searchText'>
 			{{car.year}} &nbsp {{car.model}} &nbsp <input type='checkbox' ng-model='car.selected' />
-		</div>
+		</div> -->
+
+		<table>
+			<tr ng-repeat='car in carListing | filter:tabs.searchText'>
+				<td class="padmeless">{{car.year}}</td>
+				<td class="padmeless">{{car.model}}</td>
+				<td class="padmeless"><input type='checkbox' ng-model='car.selected' /></td>
+			</tr>
+		</table>
 
 	</div>
 
