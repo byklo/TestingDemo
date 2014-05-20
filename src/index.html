@@ -1,58 +1,74 @@
 <!DOCTYPE html>
 <head>
 	<title>Testing Demo</title>
+
+	<style>
+		.padme {
+			padding:30px;
+		}
+
+		.center {
+			text-align: center;
+		}
+
+		.marginme {
+			position: fixed;
+			top: 260px;
+			right: 46%;
+		}
+	</style>
+
 </head>
 <body ng-app='carApp' ng-controller='Cars.CarController'>
-	<div><h1>Cars</h1></div>
+	<div class="center">
+		<h1>
+			Cars
+		</h1>
+	</div>
+
+	<!-- SEARCH AND ADDER -->
 
 	<tabset justified="true">
 		
 		<tab heading="Search">
-			<div>
-				<input type='text' ng-model='tabs.searchText.model' />
+			<div id="wrapper" style="text-align: center">    
+			    <div class="padme" id="yourdiv" style="display: inline-block;">
+			    	<input type='text' size=100 placeholder="Search cars..." ng-model='tabs.searchText.model' />
+			    </div>
 			</div>
 		</tab>
 
 		<tab heading="Add">
-			<div>
-				<input type='text' ng-model='tabs.newYear' />
-				&nbsp
-				<input type='text' ng-model='tabs.newModel' />
-				&nbsp
-				<button ng-click='addNewCar()'>
-					+
-				</button>
+			<div id="wrapper" style="text-align: center">    
+			    <div class="padme" id="yourdiv" style="display: inline-block;">
+			    	<input type='text' size=100 placeholder="Car year..." ng-model='tabs.newYear' />
+					<br />
+					<br />
+					<input type='text' size=100 placeholder="Car model..." ng-model='tabs.newModel' />
+					<br />
+					<br />
+					<button style="padding:0px 25px 0px 25px;" ng-click='addNewCar()'>
+						+
+					</button>
+			    </div>
 			</div>
 		</tab>
 	
 	</tabset>
 
-
-	<!-- ADDER -->
-<!-- 	<div>
-		<input type='text' ng-model='newYear' />
-		&nbsp
-		<input type='text' ng-model='newModel' />
-		&nbsp
-		<button ng-click='addNewCar()'>
-			+
-		</button>
-	</div> -->
-	
-	<!-- SEARCH -->
-<!-- 	<div>
-		SEARCH
-		<input type='text' ng-model='searchText.model' />
-	</div> -->
-
 	<!-- LISTING -->
-	<div ng-repeat='car in carListing | filter:tabs.searchText'>
-		{{car.year}} &nbsp {{car.model}} &nbsp <input type='checkbox' ng-model='car.selected' />
-	</div>
+	<div class="marginme">
 
-	<!-- DELETE AND RELOAD -->
-	<button ng-click='deleteSelected()'>Delete</button>
-	<button ng-click='reloadData()'>Reload</button>
+		<div class="center padme">
+			<button ng-click='deleteSelected()'>Delete</button>
+			<button ng-click='reloadData()'>Reload</button>
+		</div>
+
+		<div class="center" ng-repeat='car in carListing | filter:tabs.searchText'>
+			{{car.year}} &nbsp {{car.model}} &nbsp <input type='checkbox' ng-model='car.selected' />
+		</div>
+
+	</div>
 
 	<!-- RESOURCES -->
 	<script src="./resources/angular.js"	></script>

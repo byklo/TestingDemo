@@ -39,14 +39,22 @@ var Cars;
 			this.$scope.carListing = tempCars;
 		};
 
+		// Has validation, should be tested.
 		CarController.prototype.addNewCar = function(){
-			this.$scope.carListing.push({
-				year : this.$scope.tabs.newYear,
-				model : this.$scope.tabs.newModel
-			});
+			
+			var yearValidation = /^\d{4}$/,
+				newYear = this.$scope.tabs.newYear,
+				newModel = this.$scope.tabs.newModel;
 
-			this.$scope.tabs.newYear = '';
-			this.$scope.tabs.newModel = '';
+			if(yearValidation.test(newYear) && newModel && '' != newModel){
+				this.$scope.carListing.push({
+					year : newYear,
+					model : newModel
+				});
+
+				this.$scope.tabs.newYear = '';
+				this.$scope.tabs.newModel = '';
+			}
 		};
 
 		return CarController;
