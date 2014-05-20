@@ -57,6 +57,18 @@ var Cars;
 			}
 		};
 
+		CarController.prototype.getByHttp = function(){
+			var me = this;
+			
+			this.DataStore.getDataHttp().then(function (response){
+				me.$scope.carListing = response;
+			});
+		};
+
+		CarController.prototype.didItCall = function(){
+			this.DataStore.theFunction();
+		};
+
 		return CarController;
 
 	});

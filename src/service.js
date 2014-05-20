@@ -32,6 +32,13 @@ var Cars;
 			];
 			return cars;
 		};
+
+		DataStore.prototype.getDataHttp = function(){
+			return this.$http.get('api/cars').then(function (response){
+				return response.data;
+			});
+		};
+
 		return DataStore;
 	})();
 	Cars.DataStore = DataStore;
